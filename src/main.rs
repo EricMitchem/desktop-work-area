@@ -1,18 +1,28 @@
 #[cfg(windows)]
 extern crate winapi;
 
-mod desktop_work_area;
 mod error;
+mod work_area;
 
-use crate::desktop_work_area::*;
+use crate::work_area::*;
 
-fn main() {
-    match get_desktop_work_area() {
-        Ok(dwa) => {
-            println!("Desktop work area: ({}, {})", dwa.width, dwa.height)
+fn main()
+{
+    match get_work_areas() {
+        Ok(results) => {
+            for res in results.iter() {
+                match res {
+                    Ok(wa) => {
+                        println!("Work area: ({}, {})", wa.width, wa.height)
+                    },
+                    Err(err) => {
+                        println!("Failed to get work area: {}", err)
+                    }
+                }
+            }
         },
         Err(err) => {
-            println!("Failed to get desktop work area: {}", err)
+            println!("Failed to get work areas: {}", err)
         }
     }
 }
