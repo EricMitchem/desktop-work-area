@@ -87,7 +87,7 @@ impl fmt::Display for Error
 
         match self {
             General(string) => write!(f, "{}", string),
-            WinApi(string) => write!(f, "{}", string)
+            WinApi(string) => write!(f, "{}", string),
         }
     }
 }

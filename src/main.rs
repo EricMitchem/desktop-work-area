@@ -2,27 +2,27 @@
 extern crate winapi;
 
 mod error;
-mod work_area;
+mod monitor;
 
-use crate::work_area::*;
+use crate::monitor::*;
 
 fn main()
 {
-    match get_work_areas() {
+    match query_monitors() {
         Ok(results) => {
             for res in results.iter() {
                 match res {
-                    Ok(wa) => {
-                        println!("Work area: ({}, {})", wa.width, wa.height)
+                    Ok(info) => {
+                        println!("{}", info);
                     },
                     Err(err) => {
-                        println!("Failed to get work area: {}", err)
+                        println!("Failed to get monitor info: {}", err);
                     }
                 }
             }
         },
         Err(err) => {
-            println!("Failed to get work areas: {}", err)
+            println!("Failed to query monitors: {}", err);
         }
     }
 }
