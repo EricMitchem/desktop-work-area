@@ -3,6 +3,7 @@ extern crate winapi;
 
 mod error;
 mod monitor;
+mod window;
 
 use crate::monitor::*;
 
